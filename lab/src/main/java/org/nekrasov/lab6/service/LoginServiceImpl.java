@@ -3,10 +3,10 @@
  * https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-package info.stepanoff.trsis.samples.service;
+package org.nekrasov.lab6.service;
 
-import info.stepanoff.trsis.samples.db.dao.UserRepository;
-import info.stepanoff.trsis.samples.db.model.User;
+import org.nekrasov.lab6.db.dao.UserRepository;
+import org.nekrasov.lab6.db.model.User;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;

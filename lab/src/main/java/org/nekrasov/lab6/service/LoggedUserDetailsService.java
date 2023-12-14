@@ -1,4 +1,4 @@
-package info.stepanoff.trsis.samples.service;
+package org.nekrasov.lab6.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

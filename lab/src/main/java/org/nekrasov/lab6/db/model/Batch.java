@@ -3,7 +3,7 @@
  * https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-package info.stepanoff.trsis.samples.db.model;
+package org.nekrasov.lab6.db.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

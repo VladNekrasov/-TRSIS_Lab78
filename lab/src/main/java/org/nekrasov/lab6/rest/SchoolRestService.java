@@ -2,16 +2,15 @@
  * this code is available under GNU GPL v3
  * https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-package info.stepanoff.trsis.samples.rest;
+package org.nekrasov.lab6.rest;
 
+import org.nekrasov.lab6.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import info.stepanoff.trsis.samples.service.SchoolService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

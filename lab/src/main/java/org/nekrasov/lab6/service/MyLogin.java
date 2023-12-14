@@ -3,9 +3,9 @@
  * https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-package info.stepanoff.trsis.samples.service;
+package org.nekrasov.lab6.service;
 
-import info.stepanoff.trsis.samples.db.model.User;
+import org.nekrasov.lab6.db.model.User;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 public class MyLogin extends org.springframework.security.core.userdetails.User {

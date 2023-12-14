@@ -3,7 +3,7 @@
  * https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-package info.stepanoff.trsis.samples;
+package org.nekrasov.lab6;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

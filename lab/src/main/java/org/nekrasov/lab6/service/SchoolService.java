@@ -3,9 +3,9 @@
  * https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-package info.stepanoff.trsis.samples.service;
+package org.nekrasov.lab6.service;
 
-import info.stepanoff.trsis.samples.db.model.School;
+import org.nekrasov.lab6.db.model.School;
 
 public interface SchoolService {
 

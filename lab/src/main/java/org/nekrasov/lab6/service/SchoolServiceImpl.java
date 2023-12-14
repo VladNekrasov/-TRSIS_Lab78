@@ -3,15 +3,15 @@
  * https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-package info.stepanoff.trsis.samples.service;
+package org.nekrasov.lab6.service;
 
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import info.stepanoff.trsis.samples.db.dao.SchoolRepository;
-import info.stepanoff.trsis.samples.db.model.School;
+import org.nekrasov.lab6.db.dao.SchoolRepository;
+import org.nekrasov.lab6.db.model.School;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

@@ -2,9 +2,9 @@
  * this code is available under GNU GPL v3
  * https://www.gnu.org/licenses/gpl-3.0.en.html
  */
-package info.stepanoff.trsis.samples.db.dao;
+package org.nekrasov.lab6.db.dao;
 
-import info.stepanoff.trsis.samples.db.model.User;
+import org.nekrasov.lab6.db.model.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository

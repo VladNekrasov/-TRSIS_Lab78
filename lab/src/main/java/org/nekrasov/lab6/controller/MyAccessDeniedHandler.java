@@ -3,7 +3,7 @@
  * https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-package info.stepanoff.trsis.samples.controller;
+package org.nekrasov.lab6.controller;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
@@ -16,10 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
-/**
- *
- * @author Pavel.Stepanov
- */
+
+
 @Slf4j
 @Component
 public class MyAccessDeniedHandler implements AccessDeniedHandler {    
