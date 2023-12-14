@@ -17,7 +17,7 @@ public class ControllersConfig implements WebMvcConfigurer {
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/forbidden").setViewName("forbidden");
         registry.addViewController("/error").setViewName("error");
-        registry.addViewController("/").setViewName("schools");
+        registry.addViewController("/").setViewName("recipes");
 
     }
 

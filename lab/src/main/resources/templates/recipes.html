@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> 
+    <head>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+
+        <meta name="_csrf" content="${_csrf.token}" th:content="${_csrf.token}"/>
+        <meta name="_csrf_header" content="${_csrf.parameterName}" th:content="${_csrf.parameterName}"/>
+
+        <title>База данных с рецептами блюд</title>
+        <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/angular-1.7.5.min.js"></script>
+        <script src="js/recipes.js"></script>
+        <style>
+            textarea {
+                  width: 70%; /* Ширина поля в процентах */
+                  height: 90px; /* Высота поля в пикселях */
+                  resize: none; /* Запрещаем изменять размер */
+              }
+        </style>
+    </head>
+    <body ng-app="recipes" ng-controller="RecipesController">
+        <div sec:authorize="isAnonymous()" >
+            <h2><a href="/login" th:text="#{recipes.login}"></a></h2>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <form name="logoutForm" th:action="@{/logout}" method="post">
+                <input type="submit"  class="btn btn-primary" th:value="#{recipes.signout}"/>
+            </form>
+        </div>
+        <h1 th:text="#{recipes.recipes}"></h1>
+        <h2 th:text="#{recipes.searchrecipe}"></h2>
+        <div>
+            <form role="form" ng-submit="GetRecipe()">
+                <div class="form-group">
+                    <label for="searchname" th:text="#{recipes.name}"></label>
+                    <input type="text" class="form-control" id="searchname" name="searchname"  th:placeholder="#{recipes.searchname}" ng-model="searchname"> </input>
+                </div>
+                <button type="submit" class="btn btn-default" th:text="#{recipes.search}"></button>
+            </form>
+            <p></p>
+            <div class="form-group">
+                <label for="searchdescription" th:text="#{recipes.description}"></label>
+                <p></p>
+                <textarea  id="searchdescription" name="searchdescription"  th:placeholder="#{recipes.description}" ng-model="searchdescription" readonly></textarea>
+            </div>
+            <div class="form-group">
+                <label for="searchtext" th:text="#{recipes.text}"></label>
+                <p></p>
+                <textarea  id="searchtext" name="searchtext" th:placeholder="#{recipes.text}" ng-model="searchtext" readonly></textarea>
+            </div>
+        </div>
+        <h2 th:text="#{recipes.recipes}"></h2>
+        <div ng-controller="getRecipes" ng-show="recipesList.length > 0">
+            <table id="recipesTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><h2 th:text="#{recipes.name}"></h2></th>
+                        <th><h2 th:text="#{recipes.description}"></h2></th>
+                        <th><h2 th:text="#{recipes.text}"></h2></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="recipe in recipesList" id="{{recipe.id}}">
+                        <td>{{recipe.name}}</td>
+                        <td>
+                          <textarea>{{recipe.description}}</textarea>
+                        </td>
+                        <td>
+                            <textarea>{{recipe.text}}</textarea>
+                        </td>
+                        <div  sec:authorize="isAuthenticated()">
+                            <td><input type="button" th:value="#{recipes.delete}" ng-click="deleteRecipe(recipe.id)"/></td>
+                        </div>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="errormessage">{{errormessage}}</div>
+        <div  sec:authorize="isAuthenticated()">
+            <h2 th:text="#{recipes.addrecipe}"></h2>
+            <div>
+                <form role="form" ng-submit="addRecipe()">
+                    <div class="form-group">
+                        <label for="inputname" th:text="#{recipes.name}"></label>
+                        <input type="text" class="form-control" id="inputname" name="inputname"  th:placeholder="#{recipes.name}" ng-model="inputname"> </input>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputdescription" th:text="#{recipes.description}"></label>
+                        <p></p>
+                        <textarea id="inputdescription" name="inputdescription" ng-model="inputdescription" th:placeholder="#{recipes.description}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputtext" th:text="#{recipes.text}"></label>
+                        <p></p>
+                        <textarea id="inputtext" name="inputtext" ng-model="inputtext" th:placeholder="#{recipes.text}"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default" th:text="#{recipes.add}"></button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
