@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package info.stepanoff.sample.kafka;
+package org.nekrasov.kafka;
 
 import javax.transaction.Transactional;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -10,15 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author stepanov.pa
- */
+
 @Service
 public class KafkaConsumerListeners {
 
     @Autowired
-    SchoolRepository schoolRepository;
+    RecipeRepository recipeRepository;
 
     @Transactional
     @KafkaListener(topics = "${kafka.topic}", groupId = "${kafka.groupid}")
@@ -31,9 +28,9 @@ public class KafkaConsumerListeners {
         String op = ((org.apache.avro.util.Utf8) record.value().get("op")).toString();
 
         if (op.equals("d")) {
-            Integer idToDelete = (Integer) record.key().get("school_id");
+            Integer idToDelete = (Integer) record.key().get("recipe_id");
             try {
-                schoolRepository.deleteById(idToDelete);
+                recipeRepository.deleteById(idToDelete);
             } catch (org.springframework.dao.EmptyResultDataAccessException e) {
                 //Команда удаления приходит из удаленного лога репликации
                 //в том числе и в ответ на ответ на удаление в локальном. 
@@ -43,18 +40,20 @@ public class KafkaConsumerListeners {
         }
 
         org.apache.avro.generic.GenericData.Record value = (org.apache.avro.generic.GenericData.Record) record.value().get("after");
-        Integer id = (Integer) value.get("school_id");
-        String name = ((org.apache.avro.util.Utf8) value.get("school_name")).toString();
-        Integer number = (Integer) value.get("school_number");
+        Integer id = (Integer) value.get("recipe_id");
+        String name = ((org.apache.avro.util.Utf8) value.get("recipe_name")).toString();
+        String description = ((org.apache.avro.util.Utf8) value.get("recipe_description")).toString();
+        String text = ((org.apache.avro.util.Utf8) value.get("recipe_text")).toString();
 
-        School school = schoolRepository.findById(id).orElse(null);
+        Recipe recipe = recipeRepository.findById(id).orElse(null);
 
-        if (school == null) {
-            schoolRepository.save(new School(id, name, number));
+        if (recipe == null) {
+            recipeRepository.save(new Recipe(id, name, description, text));
         } else {
-            school.setName(name);
-            school.setNumber(number);
-            schoolRepository.save(school);
+            recipe.setName(name);
+            recipe.setDescription(description);
+            recipe.setText(text);
+            recipeRepository.save(recipe);
         }
     }
 

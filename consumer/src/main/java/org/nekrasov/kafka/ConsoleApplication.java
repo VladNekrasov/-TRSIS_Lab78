@@ -1,4 +1,4 @@
-package info.stepanoff.sample.kafka;
+package org.nekrasov.kafka;
 
 
 import org.springframework.boot.CommandLineRunner;

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package info.stepanoff.sample.kafka;
+package org.nekrasov.kafka;
 
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import java.util.HashMap;
@@ -17,10 +17,6 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 
-/**
- *
- * @author stepanov.pa
- */
 @EnableKafka
 @Configuration
 public class KafkaConsumerConfig {
